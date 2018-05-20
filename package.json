@@ -1,0 +1,23 @@
+{
+  "name": "wah_its",
+  "version": "1.0.0",
+  "description": "ITS for WAH",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exs-xgg/wah_its.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/exs-xgg/wah_its/issues"
+  },
+  "homepage": "https://github.com/exs-xgg/wah_its#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.3.1"
+  }
+}
