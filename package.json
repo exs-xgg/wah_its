@@ -18,6 +18,7 @@
   "homepage": "https://github.com/exs-xgg/wah_its#readme",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "toastr": "^2.1.4"
   }
 }
