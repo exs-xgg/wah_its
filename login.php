@@ -6,8 +6,8 @@ if (isset($_SESSION['user'])) {
 ?>
 
 
-<body class="body">
-<div class="container">
+<body>
+<div class="container text-center">
 	<div class="row">
 		<div class="col-lg-2 col-md-2 col-xs-1">&nbsp;</div>
 		<div class="col-lg-8 col-md-8 col-xs-10">
@@ -17,73 +17,62 @@ if (isset($_SESSION['user'])) {
 			<br>
 			
 			<form class="form form-action">
-				<label class="sr-only">Username*</label>
-				  <div class="input-group">
-				    <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-				    <input type="text" class="form-control" placeholder="Username*" id="usn" required>
-				  </div>
+				<div class="col-lg-12 col-md-12 mb-4">
+
+                    <div class="md-form">
+                        <input type="text" id="usn" class="form-control" required>
+                        <label for="form1" class="">Username*</label>
+                    </div>
+
+                </div>
 				  <br>
-				<label class="sr-only">Password*</label>
-				  <div class="input-group">
-				    <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-				    <input type="password" class="form-control" placeholder="Password*" id="pw" required>
-				  </div>
+				  <div class="col-lg-12 col-md-12 mb-4">
+
+                    <div class="md-form">
+                        <input type="password" id="pw" class="form-control" required>
+                        <label for="form1" class="">Password*</label>
+                    </div>
+
+                </div>
+				
 				  <span class="pull-right">*Required fields</span>
 				  <br><br>
 				  		
 				  
 			</form>	
-			<div class="col-lg-6 col-md-6 col-xs-6">
-	  			<button class="btn btn-primary btn-lg" style="width: 100%" onclick="login()" id="loginbtn">Login</button>
-	  		</div>
-	  		<div class="col-lg-6 col-md-6 col-xs-6">
-	  			<button class="btn btn-warning btn-lg" style="width: 100%" onclick="clear()" id="clearbtn">Clear</button>
-	  		</div>	
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-6 col-md-12">
+			  			<button class="btn btn-primary btn-lg waves-effect waves-light" onclick="login()" id="loginbtn">Login</button>
+			  		</div>
+			  		<div class="col-lg-6 col-md-12">
+			  			<button class="btn btn-warning btn-lg waves-effect waves-light" onclick="clear()" id="clearbtn">Clear</button>
+			  		</div>
+				</div>
+			</div>
+				
 		</div>
 		<div class="col-lg-2 col-md-2 col-xs-1">&nbsp;</div>
 	</div>
-
-	<!-- <div class="modal fade" id="myModal" role="dialog">
-	    <div class="modal-dialog">
-	    
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">WAH ITS</h4>
-	        </div>
-	        <div class="modal-body">
-	          <h3 align="center">Loading, Please wait..</h3>
-	          <br>
-	          <div class="progress">
-				  <div class="progress-bar" role="progressbar" aria-valuenow="70"
-				  aria-valuemin="0" aria-valuemax="100" style="width:70%">
-				    <span class="sr-only">70% Complete</span>
-				  </div>
-				</div>
-	        </div>
-	        <div class="modal-footer">
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        </div>
-	      </div>
-	      
-	    </div>
-	</div> -->
 <script type="text/javascript">
 	function login(){
 		if (($("#usn").val()!=="") && ($("#pw").val()!=="")) {
-			$("#loginbtn, #clearbtn, #usn, #pw").attr("disabled", "disabled");
-			toastr.info('','Logging in',{"progressBar": true, "timeout": "10000"});
+			// $("#loginbtn, #clearbtn, #usn, #pw").attr("disabled", "disabled");
+			toastr.info('','Logging in',{"progressBar": true});
 			$.ajax({
 				url: 'functions/auth.php?u=' + $("#usn").val() + '&p=' + $("#pw").val(),
 				success: function(result){
-					result = JSON.parse(result);
-					if(result.result == true) {
-						toastr.success("asd");
+					result_ = JSON.parse(result);
+					localStorage.setItem("user", result);
+					if(result_.result == true) {
+						var cons = JSON.parse(localStorage.user)
+						toastr.success("Welcome, " + cons.first_name + ' ' + cons.last_name);
 
 						//GO TO INDEX
+						$("#body").load('pages/home.html');
 
 					}else{
-						toastr.error("dsa");
+						toastr.error("Error: Wrong Password or Internal Server Error 500");
 					}
 				},
 				error: function(){
@@ -102,6 +91,13 @@ if (isset($_SESSION['user'])) {
 	}
 </script>
 </body>
+    <!-- <script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/mdbootstrap/js/jquery-3.2.1.min.js"></script>
+	<script src="node_modules/mdbootstrap/js/mdb.min.js"></script>
+	<script src="node_modules/mdbootstrap/js/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="node_modules/mdbootstrap/js/bootstrap.min.js"></script>
+	<script src="node_modules/toastr/build/toastr.min.js"></script> -->
 </html>
 
 
