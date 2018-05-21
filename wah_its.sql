@@ -1,8 +1,5 @@
-create database wah_its;
-use wah_its;
-
 create table users(
-	id primary key int not null auto_increment,
+	id int PRIMARY KEY AUTO_INCREMENT,
 	username varchar(30) not null,
 	password varchar(128) not null,
 	first_name varchar(50),
@@ -11,15 +8,15 @@ create table users(
 	date_updated timestamp default now()
 );
 create table lib_facility(
-	id primary key int auto_increment,
+	id int primary key auto_increment,
 	hfname varchar(255),
 	prov_code char(4),
 	muncity_code char(6)
 );
 create table employee(
-	id primary key int auto_increment,
+	id int primary key auto_increment,
 	name varchar(255),
-	role varchar(30)
+	role varchar(30),
 	date_added datetime default now()
 );
 create table lib_province(
@@ -31,17 +28,17 @@ create table lib_muncity(
 	muncity_name varchar(255)
 );
 create table issue_category(
-	id primary key int auto_increment,
+	id int primary key auto_increment,
 	cat_name varchar(50),
-	date_added datetime defualt now()
+	date_added datetime default now()
 );
 create table server_version(
-	id primary key int auto_increment,
+	id int primary key auto_increment,
 	version varchar(50),
 	date_added datetime default now()
 );
 create table issue(
-	id primary key int auto_increment,
+	id int primary key auto_increment,
 	user int,
 	caller varchar(255),
 	hf int,
